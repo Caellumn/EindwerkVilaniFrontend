@@ -46,13 +46,13 @@ export const NavbarContainer = ({
   return (
     <nav
       className={cn(
-        "flex w-full backdrop-blur-md bg-white/90 border border-[#a5673f]/20 rounded-2xl shadow-xl shadow-black/5 p-2 relative",
+        "flex w-full backdrop-blur-md bg-white/90 border border-[#a5673f]/20 rounded-b-2xl shadow-xl shadow-black/5 p-4 relative",
         className
       )}
       style={{ backgroundColor: "rgba(255, 255, 255, 0.95)" }}
       {...props}
     >
-      <div className="gap-2 flex w-full items-center justify-between">
+      <div className="gap-3 flex w-full items-center justify-between">
         {children}
       </div>
     </nav>
@@ -71,10 +71,10 @@ export const NavbarLink = ({
     <a
       href={href}
       className={cn(
-        "relative inline-flex text-sm h-11 px-6 tracking-tight items-center justify-center rounded-xl transition-all duration-200",
+        "relative inline-flex text-base h-12 px-8 tracking-tight items-center justify-center rounded-xl transition-all duration-200",
         isHighlighted
           ? "text-white bg-[#a5673f] hover:bg-[#8b5633] shadow-md hover:scale-105 font-medium"
-          : "text-[#5a3d2b] hover:text-[#a5673f] hover:bg-[#faf3ee]/80 font-medium"
+          : "text-[#5a3d2b] hover:text-[#a5673f] hover:bg-[#faf3ee] hover:shadow-md hover:scale-[1.02] font-medium border border-transparent hover:border-[#a5673f]/30"
       )}
       {...props}
     >
