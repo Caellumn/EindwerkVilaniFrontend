@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { cn } from "@/utils/cn";
+import Image from "next/image";
 
 interface CarouselItem {
   id: number;
@@ -63,10 +64,13 @@ export function SimpleCarousel({
               index === currentIndex ? "opacity-100" : "opacity-0"
             )}
           >
-            <img
+            <Image
               src={item.image}
               alt={item.title || `Slide ${index + 1}`}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 1024px"
+              priority={index === 0}
             />
             {/* Optional overlay with title and description */}
             {(item.title || item.description) && (

@@ -1,12 +1,14 @@
 import { Navbar } from "@/components/Navbar";
 import { SimpleCarousel } from "@/components/SimpleCarousel";
+import { Footer } from "@/components/Footer";
+import { ArrowRight } from "lucide-react";
 
 // Sample data for the carousel - replace with your actual salon images
 const carouselItems = [
   {
     id: 1,
     image:
-      "https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
+      "https://res.cloudinary.com/dqq0m8xb3/image/upload/v1748189993/fvp0twjhzd9lchbyy06r.jpg",
     title: "Professional Hair Styling",
     description: "Expert stylists for all your hair needs",
   },
@@ -65,24 +67,13 @@ export default function Home() {
                 className="inline-flex items-center px-8 py-4 text-white bg-[#a5673f] hover:bg-[#8b5633] rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
               >
                 Book Your Appointment
-                <svg
-                  className="ml-2 w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
+                <ArrowRight className="ml-2 w-5 h-5" />
               </a>
             </div>
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }

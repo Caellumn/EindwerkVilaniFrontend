@@ -8,10 +8,11 @@ export const Navbar = () => {
     <NavbarContainer>
       <NavbarLogo />
       <div className="flex items-center gap-2 flex-1 justify-center">
-        <NavbarLink href="/Home">Home</NavbarLink>
-        <NavbarLink href="/About">About</NavbarLink>
-        <NavbarLink href="/Services">Services</NavbarLink>
-        <NavbarLink href="/Contact">Contact</NavbarLink>
+        <NavbarLink href="/">Home</NavbarLink>
+        <NavbarLink href="/about">About</NavbarLink>
+        <NavbarLink href="/products">Products</NavbarLink>
+        <NavbarLink href="/contact">Contact</NavbarLink>
+        <NavbarLink href="/voor-na">Voor en na</NavbarLink>
       </div>
       <div className="flex items-center">
         <NavbarLink href="/Book" isHighlighted>
