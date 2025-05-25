@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/Navbar2";
 import { SimpleCarousel } from "@/components/SimpleCarousel";
 import { Footer } from "@/components/Footer";
 import { ArrowRight } from "lucide-react";
