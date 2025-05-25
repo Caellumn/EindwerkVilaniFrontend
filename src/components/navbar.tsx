@@ -46,7 +46,7 @@ export const Navbar = () => {
 
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 md:hidden bg-white/95 backdrop-blur-md border border-[#a5673f]/20 rounded-b-2xl shadow-xl shadow-black/10 z-50">
+        <div className="fixed top-20 left-4 right-4 md:hidden bg-white/95 backdrop-blur-md border border-[#a5673f]/20 rounded-2xl shadow-xl shadow-black/10 z-[9999]">
           <div className="flex flex-col p-4 space-y-2">
             <MobileNavLink href="/" onClick={closeMenu}>
               Home
@@ -99,7 +99,7 @@ export const NavbarContainer = ({
   return (
     <nav
       className={cn(
-        "relative flex w-full backdrop-blur-md bg-white/90 border border-[#a5673f]/20 rounded-b-2xl shadow-xl shadow-black/5 p-4",
+        "relative flex w-full backdrop-blur-md bg-white/90 border border-[#a5673f]/20 rounded-b-2xl shadow-xl shadow-black/5 p-4 z-[9999]",
         className
       )}
       style={{ backgroundColor: "rgba(255, 255, 255, 0.95)" }}
