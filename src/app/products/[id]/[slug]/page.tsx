@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Navbar } from "@/components/Navbar2";
+import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ArrowLeft } from "lucide-react";
 import { slugit } from "@/utils/helpers";
