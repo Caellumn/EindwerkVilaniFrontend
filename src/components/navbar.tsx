@@ -30,9 +30,9 @@ export const NavbarLogo = () => {
       <Image
         src="https://res.cloudinary.com/dqq0m8xb3/image/upload/v1748090686/products/tokg8mxxfp6fs1waav4b.jpg"
         alt="Kapsalon Vilani - Logo"
-        className="h-10 w-auto"
-        width={100}
-        height={100}
+        className="h-14 w-auto"
+        width={150}
+        height={150}
       />
     </div>
   );
