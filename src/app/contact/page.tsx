@@ -52,8 +52,11 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Phone className="text-green-500" size={20} />
+                <div className="flex items-start gap-3">
+                  <Phone
+                    className="text-green-500 mt-1 flex-shrink-0"
+                    size={20}
+                  />
                   <div>
                     <p className="font-semibold text-[#5a3d2b]">Phone</p>
                     <a
@@ -65,8 +68,11 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Globe className="text-[#a5673f]" size={20} />
+                <div className="flex items-start gap-3">
+                  <Globe
+                    className="text-[#a5673f] mt-1 flex-shrink-0"
+                    size={20}
+                  />
                   <div>
                     <p className="font-semibold text-[#5a3d2b]">Website</p>
                     <a
@@ -80,8 +86,11 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Facebook className="text-[#a5673f]" size={20} />
+                <div className="flex items-start gap-3">
+                  <Facebook
+                    className="text-[#a5673f] mt-1 flex-shrink-0"
+                    size={20}
+                  />
                   <div>
                     <p className="font-semibold text-[#5a3d2b]">Facebook</p>
                     <a
@@ -94,8 +103,11 @@ const ContactPage = () => {
                     </a>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Instagram className="text-[#a5673f]" size={20} />
+                <div className="flex items-start gap-3">
+                  <Instagram
+                    className="text-[#a5673f] mt-1 flex-shrink-0"
+                    size={20}
+                  />
                   <div>
                     <p className="font-semibold text-[#5a3d2b]">Instagram</p>
                     <a

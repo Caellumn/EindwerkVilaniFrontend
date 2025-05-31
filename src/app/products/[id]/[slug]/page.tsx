@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ShoppingBag } from "lucide-react";
 import { slugit } from "@/utils/helpers";
-import { Product } from "@/utils/types";
+import { Product, PaginatedResponse } from "@/utils/types";
 
 interface PageParams {
   id: string;
@@ -16,7 +16,8 @@ export async function generateStaticParams(): Promise<PageParams[]> {
   const resp = await fetch(
     `https://kapsalon-vilani-ft6cs.ondigitalocean.app/api/products`
   );
-  const products = (await resp.json()) as Product[];
+  const paginatedData = (await resp.json()) as PaginatedResponse;
+  const products = paginatedData.data;
 
   return products.map((product) => ({
     id: product.id,
@@ -33,7 +34,7 @@ export const generateMetadata = async ({
   const resp = await fetch(
     `https://kapsalon-vilani-ft6cs.ondigitalocean.app/api/products/${id}`
   );
-  const data = await resp.json();
+  const data = (await resp.json()) as Product;
   return {
     title: data.name,
     description: data.description,
@@ -53,7 +54,7 @@ const ProductPage = async ({ params }: { params: Promise<PageParams> }) => {
   const resp = await fetch(
     `https://kapsalon-vilani-ft6cs.ondigitalocean.app/api/products/${id}`
   );
-  const data = await resp.json();
+  const data = (await resp.json()) as Product;
   return (
     <>
       <Navbar />
@@ -76,13 +77,24 @@ const ProductPage = async ({ params }: { params: Promise<PageParams> }) => {
               {/* Product Image */}
               <div className="relative">
                 <div className="relative w-full h-96 lg:h-[500px] overflow-hidden rounded-xl bg-white">
-                  <Image
-                    src={data.image}
-                    alt={data.name}
-                    fill
-                    className="object-contain hover:scale-105 transition-transform duration-300 p-4"
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                  />
+                  {data.image ? (
+                    <Image
+                      src={data.image}
+                      alt={data.name}
+                      fill
+                      className="object-contain hover:scale-105 transition-transform duration-300 p-4"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full text-[#5a3d2b]/40">
+                      <div className="text-center">
+                        <ShoppingBag size={80} className="mx-auto mb-4" />
+                        <span className="text-lg">
+                          Geen afbeelding beschikbaar
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
