@@ -30,7 +30,7 @@ export const Navbar = () => {
 
       {/* Desktop Book Button */}
       <div className="hidden md:flex items-center">
-        <NavbarLink href="/Book" isHighlighted>
+        <NavbarLink href="/book" isHighlighted>
           Book
         </NavbarLink>
       </div>
@@ -63,7 +63,7 @@ export const Navbar = () => {
             <MobileNavLink href="/voor-na" onClick={closeMenu}>
               Voor en na
             </MobileNavLink>
-            <MobileNavLink href="/Book" onClick={closeMenu} isHighlighted>
+            <MobileNavLink href="/book" onClick={closeMenu} isHighlighted>
               Book Appointment
             </MobileNavLink>
           </div>

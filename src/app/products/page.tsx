@@ -32,11 +32,12 @@ export const metadata: Metadata = {
 export const revalidate = 86400; //once a day
 
 interface ProductsPageProps {
-  searchParams: { page?: string };
+  searchParams: Promise<{ page?: string }>;
 }
 
 const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
-  const currentPage = searchParams.page ? parseInt(searchParams.page) : 1;
+  const params = await searchParams;
+  const currentPage = params.page ? parseInt(params.page) : 1;
 
   const resp = await fetch(
     `https://kapsalon-vilani-ft6cs.ondigitalocean.app/api/products?page=${currentPage}`
@@ -224,7 +225,7 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
                 producten voor uw haar
               </p>
               <Link
-                href="/Book"
+                href="/book"
                 className="inline-flex items-center px-8 py-4 text-white bg-[#a5673f] hover:bg-[#8b5633] rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
               >
                 Maak Een Afspraak

@@ -166,7 +166,7 @@ const ContactPage = () => {
           {/* Call to Action */}
           <div className="text-center">
             <a
-              href="/Book"
+              href="/book"
               className="inline-flex items-center px-8 py-4 text-white bg-[#a5673f] hover:bg-[#8b5633] rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
             >
               Book Your Appointment
