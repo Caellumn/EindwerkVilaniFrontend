@@ -52,8 +52,11 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Phone className="text-green-500" size={20} />
+                <div className="flex items-start gap-3">
+                  <Phone
+                    className="text-green-500 mt-1 flex-shrink-0"
+                    size={20}
+                  />
                   <div>
                     <p className="font-semibold text-[#5a3d2b]">Phone</p>
                     <a
@@ -65,8 +68,11 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Globe className="text-[#a5673f]" size={20} />
+                <div className="flex items-start gap-3">
+                  <Globe
+                    className="text-[#a5673f] mt-1 flex-shrink-0"
+                    size={20}
+                  />
                   <div>
                     <p className="font-semibold text-[#5a3d2b]">Website</p>
                     <a
@@ -80,8 +86,11 @@ const ContactPage = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <Facebook className="text-[#a5673f]" size={20} />
+                <div className="flex items-start gap-3">
+                  <Facebook
+                    className="text-[#a5673f] mt-1 flex-shrink-0"
+                    size={20}
+                  />
                   <div>
                     <p className="font-semibold text-[#5a3d2b]">Facebook</p>
                     <a
@@ -94,8 +103,11 @@ const ContactPage = () => {
                     </a>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Instagram className="text-[#a5673f]" size={20} />
+                <div className="flex items-start gap-3">
+                  <Instagram
+                    className="text-[#a5673f] mt-1 flex-shrink-0"
+                    size={20}
+                  />
                   <div>
                     <p className="font-semibold text-[#5a3d2b]">Instagram</p>
                     <a
@@ -154,7 +166,7 @@ const ContactPage = () => {
           {/* Call to Action */}
           <div className="text-center">
             <a
-              href="/Book"
+              href="/book"
               className="inline-flex items-center px-8 py-4 text-white bg-[#a5673f] hover:bg-[#8b5633] rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
             >
               Book Your Appointment
