@@ -116,6 +116,13 @@ const BookingForm = () => {
   };
 
   const isTimeUnavailable = (time: Date) => {
+    // Check business hours: 9 AM to 5 PM
+    const hours = time.getHours();
+    if (hours < 9 || hours >= 17) {
+      return true; // Outside business hours
+    }
+
+    // Check if time slot is already booked
     return bookedSlots.some((slot) => {
       if (!slot.end_time) return false;
 
@@ -242,7 +249,7 @@ const BookingForm = () => {
       email,
       telephone,
       gender,
-      remarks,
+      remarks: remarks.trim() || "Geen opmerkingen", // Default to meaningful text
       status: "pending",
     };
 
@@ -387,11 +394,12 @@ const BookingForm = () => {
             onChange={setSelectedDate}
             showTimeSelect
             timeIntervals={30}
-            dateFormat="yyyy-MM-dd HH:mm"
+            dateFormat="dd/MM/yyyy HH:mm"
             filterDate={(date: Date) => !isDateDisabled(date)}
             filterTime={(time: Date) => !isTimeUnavailable(time)}
             minDate={new Date()}
             maxDate={new Date(new Date().setMonth(new Date().getMonth() + 3))}
+            onKeyDown={(e) => e.preventDefault()}
             className="w-full border border-[#a5673f]/30 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b]"
             calendarClassName="!z-50"
             placeholderText="Selecteer datum en tijd"
@@ -415,26 +423,29 @@ const BookingForm = () => {
                 }`}
                 onClick={() => handleServiceToggle(service.id)}
               >
-                <div className="flex items-center gap-3">
-                  <input
-                    type="checkbox"
-                    checked={selectedServices.includes(service.id)}
-                    onChange={() => handleServiceToggle(service.id)}
-                    className="text-[#a5673f]"
-                  />
-                  <div className="flex-1">
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="checkbox"
+                      checked={selectedServices.includes(service.id)}
+                      onChange={(e) => {
+                        e.stopPropagation();
+                        handleServiceToggle(service.id);
+                      }}
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-[#a5673f]"
+                    />
                     <h4 className="font-semibold text-[#5a3d2b]">
                       {service.name}
                     </h4>
+                  </div>
+                  <div>
                     <p className="text-sm text-[#5a3d2b]/70">
                       {service.description}
                     </p>
-                    <div className="flex justify-between mt-2">
+                    <div className="mt-2">
                       <span className="text-[#a5673f] font-bold">
                         €{service.price}
-                      </span>
-                      <span className="text-sm text-[#5a3d2b]/60">
-                        {service.time} min
                       </span>
                     </div>
                   </div>
@@ -460,17 +471,23 @@ const BookingForm = () => {
                 }`}
                 onClick={() => handleProductToggle(product.id)}
               >
-                <div className="flex items-center gap-3">
-                  <input
-                    type="checkbox"
-                    checked={selectedProducts.includes(product.id)}
-                    onChange={() => handleProductToggle(product.id)}
-                    className="text-[#a5673f]"
-                  />
-                  <div className="flex-1">
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="checkbox"
+                      checked={selectedProducts.includes(product.id)}
+                      onChange={(e) => {
+                        e.stopPropagation();
+                        handleProductToggle(product.id);
+                      }}
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-[#a5673f]"
+                    />
                     <h4 className="font-semibold text-[#5a3d2b]">
                       {product.name}
                     </h4>
+                  </div>
+                  <div>
                     <p className="text-sm text-[#5a3d2b]/70 line-clamp-2">
                       {product.description}
                     </p>
