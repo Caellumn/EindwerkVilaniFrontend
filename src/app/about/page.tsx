@@ -9,6 +9,24 @@ import {
   Instagram,
 } from "lucide-react";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Kapsalon Vilani - Over ons",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  description: "Ontdek de passievolle professionals achter Kapsalon Vilani",
+  openGraph: {
+    title: "Kapsalon Vilani - Over ons",
+    description: "Ontdek de passievolle professionals achter Kapsalon Vilani",
+    images: [
+      {
+        url: "/public/images/logo.png",
+      },
+    ],
+  },
+};
 
 const AboutPage = () => {
   return (

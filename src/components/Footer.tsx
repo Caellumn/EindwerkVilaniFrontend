@@ -20,7 +20,7 @@ export const Footer = () => {
                   Kapsalon Vilani
                 </h2>
                 <p className="text-sm text-[#faf3ee]/80">
-                  Professional Hair Care
+                  Professionele Haarverzorging & Styling
                 </p>
               </div>
             </div>
@@ -49,7 +49,7 @@ export const Footer = () => {
 
             <div className="flex flex-col">
               <h3 className="text-sm font-semibold text-[#a5673f] mb-2 uppercase tracking-wider">
-                Address
+                Adres
               </h3>
               <div className="flex items-start gap-2 text-sm text-[#faf3ee]/90">
                 <MapPin

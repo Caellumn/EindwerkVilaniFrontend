@@ -140,7 +140,7 @@ const ProductPage = async ({ params }: { params: Promise<PageParams> }) => {
                   </div>
                   {data.stock > 2 && (
                     <p className="text-[#5a3d2b]/60 text-sm mt-2">
-                      Op voorraad en klaar voor levering
+                      Op voorraad voor afhaling in ons salon
                     </p>
                   )}
                   {data.stock <= 2 && (

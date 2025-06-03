@@ -22,10 +22,10 @@ export const Navbar = () => {
       {/* Desktop Navigation */}
       <div className="hidden md:flex items-center gap-2 flex-1 justify-center">
         <NavbarLink href="/">Home</NavbarLink>
-        <NavbarLink href="/about">About</NavbarLink>
-        <NavbarLink href="/products">Products</NavbarLink>
+        <NavbarLink href="/about">Over ons</NavbarLink>
+        <NavbarLink href="/products">Producten</NavbarLink>
         <NavbarLink href="/contact">Contact</NavbarLink>
-        <NavbarLink href="/voor-na">Voor en na</NavbarLink>
+        <NavbarLink href="/onze-creaties">Onze creaties</NavbarLink>
       </div>
 
       {/* Desktop Book Button */}

@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type BookingSlot = {
   date: string;
@@ -27,7 +28,22 @@ type Product = {
 };
 
 type PaginatedProductResponse = {
+  current_page: number;
   data: Product[];
+  first_page_url: string;
+  from: number;
+  last_page: number;
+  last_page_url: string;
+  links: Array<{
+    url: string | null;
+    label: string;
+    active: boolean;
+  }>;
+  next_page_url: string | null;
+  path: string;
+  per_page: number;
+  prev_page_url: string | null;
+  to: number;
   total: number;
 };
 
@@ -49,6 +65,9 @@ const BookingForm = () => {
   const [bookedSlots, setBookedSlots] = useState<BookingSlot[]>([]);
   const [services, setServices] = useState<Service[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const [productsPageData, setProductsPageData] =
+    useState<PaginatedProductResponse | null>(null);
+  const [currentProductsPage, setCurrentProductsPage] = useState(1);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -61,43 +80,53 @@ const BookingForm = () => {
   const [gender, setGender] = useState<"male" | "female">("male");
   const [remarks, setRemarks] = useState("");
 
+  const fetchProducts = async (page: number = 1) => {
+    try {
+      const productsRes = await fetch(
+        `https://kapsalon-vilani-ft6cs.ondigitalocean.app/api/products?page=${page}`
+      );
+      const productsData =
+        (await productsRes.json()) as PaginatedProductResponse;
+      setProductsPageData(productsData);
+      setProducts(productsData.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [csrfRes, bookingsRes, servicesRes, productsRes] =
-          await Promise.all([
-            fetch(
-              "https://kapsalon-vilani-ft6cs.ondigitalocean.app/api/csrf-token",
-              {
-                credentials: "include",
-              }
-            ),
-            fetch(
-              "https://kapsalon-vilani-ft6cs.ondigitalocean.app/api/bookings",
-              {
-                credentials: "include",
-              }
-            ),
-            fetch(
-              "https://kapsalon-vilani-ft6cs.ondigitalocean.app/api/services"
-            ),
-            fetch(
-              "https://kapsalon-vilani-ft6cs.ondigitalocean.app/api/products"
-            ),
-          ]);
+        const [csrfRes, bookingsRes, servicesRes] = await Promise.all([
+          fetch(
+            "https://kapsalon-vilani-ft6cs.ondigitalocean.app/api/csrf-token",
+            {
+              credentials: "include",
+            }
+          ),
+          fetch(
+            "https://kapsalon-vilani-ft6cs.ondigitalocean.app/api/bookings",
+            {
+              credentials: "include",
+            }
+          ),
+          fetch(
+            "https://kapsalon-vilani-ft6cs.ondigitalocean.app/api/services"
+          ),
+        ]);
 
-        const [csrfData, bookingsData, servicesData, productsData] =
-          await Promise.all([
-            csrfRes.json(),
-            bookingsRes.json(),
-            servicesRes.json(),
-            productsRes.json(),
-          ]);
+        const [csrfData, bookingsData, servicesData] = await Promise.all([
+          csrfRes.json(),
+          bookingsRes.json(),
+          servicesRes.json(),
+        ]);
 
         setCsrfToken(csrfData.csrf_token);
         setBookedSlots(bookingsData);
         setServices(servicesData);
-        setProducts((productsData as PaginatedProductResponse).data);
+
+        // Fetch products separately with pagination
+        await fetchProducts(1);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -160,6 +189,11 @@ const BookingForm = () => {
     }, 0);
 
     return serviceTotal + productTotal;
+  };
+
+  const handleProductsPageChange = async (newPage: number) => {
+    setCurrentProductsPage(newPage);
+    await fetchProducts(newPage);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -460,7 +494,7 @@ const BookingForm = () => {
           <label className="block text-sm font-medium text-[#5a3d2b] mb-4">
             Producten (optioneel)
           </label>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
             {products.map((product) => (
               <div
                 key={product.id}
@@ -504,6 +538,75 @@ const BookingForm = () => {
               </div>
             ))}
           </div>
+
+          {/* Products Pagination */}
+          {productsPageData && productsPageData.last_page > 1 && (
+            <div className="flex justify-center items-center gap-2 mb-4">
+              <div className="bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-lg border border-[#a5673f]/20">
+                <div className="flex items-center gap-2">
+                  {/* Previous Button */}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleProductsPageChange(currentProductsPage - 1)
+                    }
+                    disabled={!productsPageData.prev_page_url}
+                    className="flex items-center px-2 py-1 text-[#5a3d2b] hover:bg-[#a5673f]/10 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    <ChevronLeft size={16} />
+                    <span className="hidden sm:inline ml-1 text-sm">
+                      Vorige
+                    </span>
+                  </button>
+
+                  {/* Page Numbers */}
+                  <div className="flex items-center gap-1 mx-2">
+                    {Array.from(
+                      { length: Math.min(productsPageData.last_page, 5) },
+                      (_, i) => {
+                        const pageNum = i + 1;
+                        return (
+                          <button
+                            key={pageNum}
+                            type="button"
+                            onClick={() => handleProductsPageChange(pageNum)}
+                            className={`px-2 py-1 rounded-lg text-xs font-medium transition-colors ${
+                              pageNum === currentProductsPage
+                                ? "bg-[#a5673f] text-white"
+                                : "text-[#5a3d2b] hover:bg-[#a5673f]/10"
+                            }`}
+                          >
+                            {pageNum}
+                          </button>
+                        );
+                      }
+                    )}
+                  </div>
+
+                  {/* Next Button */}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleProductsPageChange(currentProductsPage + 1)
+                    }
+                    disabled={!productsPageData.next_page_url}
+                    className="flex items-center px-2 py-1 text-[#5a3d2b] hover:bg-[#a5673f]/10 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    <span className="hidden sm:inline mr-1 text-sm">
+                      Volgende
+                    </span>
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
+
+                {/* Page Info */}
+                <div className="text-center mt-1 text-xs text-[#5a3d2b]/60">
+                  Pagina {productsPageData.current_page} van{" "}
+                  {productsPageData.last_page}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Remarks */}

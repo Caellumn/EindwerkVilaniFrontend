@@ -58,11 +58,6 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
             <p className="text-xl text-[#5a3d2b]/80 max-w-2xl mx-auto leading-relaxed">
               Ontdek onze selectie van premium haarverzorgingsproducten
             </p>
-            {paginatedData.total > 0 && (
-              <p className="text-sm text-[#5a3d2b]/60 mt-2">
-                {paginatedData.total} producten gevonden
-              </p>
-            )}
           </div>
 
           {/* Products Grid */}

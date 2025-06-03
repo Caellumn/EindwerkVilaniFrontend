@@ -9,6 +9,22 @@ import {
   ArrowRight,
   Instagram,
 } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Kapsalon Vilani - Contact",
+  description: "Contacteer Kapsalon Vilani voor haarverzorging in Stabroek",
+  openGraph: {
+    title: "Kapsalon Vilani",
+    description:
+      "Welkom bij Kapsalon Vilani, een professioneel haarzorgsalon in Putte Stabroek. Onze stijlvolle salon biedt een ruim assortiment aan haarproducten en haarzorgservices.",
+    images: [
+      {
+        url: "/public/images/logo.png",
+      },
+    ],
+  },
+};
 
 const ContactPage = () => {
   return (
@@ -22,7 +38,7 @@ const ContactPage = () => {
               Contact Kapsalon Vilani
             </h1>
             <p className="text-xl text-[#5a3d2b]/80 max-w-2xl mx-auto leading-relaxed">
-              Your trusted hair care professionals in Stabroek
+              Vertrouwde handen voor jouw haar in Stabroek
             </p>
           </div>
 
@@ -32,7 +48,7 @@ const ContactPage = () => {
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl shadow-[#a5673f]/10 border border-[#a5673f]/20">
               <h2 className="text-2xl font-bold text-[#5a3d2b] mb-6 flex items-center gap-3">
                 <MapPin className="text-[#a5673f]" size={28} />
-                Contact & Location
+                Contact & Locatie
               </h2>
 
               <div className="space-y-4">
@@ -42,7 +58,7 @@ const ContactPage = () => {
                     size={20}
                   />
                   <div>
-                    <p className="font-semibold text-[#5a3d2b]">Address</p>
+                    <p className="font-semibold text-[#5a3d2b]">Adres</p>
                     <p className="text-[#5a3d2b]/80">
                       Puttestraat 3<br />
                       2940 Stabroek
@@ -58,7 +74,7 @@ const ContactPage = () => {
                     size={20}
                   />
                   <div>
-                    <p className="font-semibold text-[#5a3d2b]">Phone</p>
+                    <p className="font-semibold text-[#5a3d2b]">Telefoon</p>
                     <a
                       href="tel:+3232944833"
                       className="text-[#a5673f] hover:text-[#8b5633] transition-colors duration-200"
@@ -76,12 +92,12 @@ const ContactPage = () => {
                   <div>
                     <p className="font-semibold text-[#5a3d2b]">Website</p>
                     <a
-                      href="http://www.vilani.be"
+                      href="https://kapsalon-vilani.com/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#a5673f] hover:text-[#8b5633] transition-colors duration-200"
                     >
-                      www.vilani.be
+                      https://kapsalon-vilani.com/
                     </a>
                   </div>
                 </div>
@@ -99,7 +115,7 @@ const ContactPage = () => {
                       rel="noopener noreferrer"
                       className="text-[#a5673f] hover:text-[#8b5633] transition-colors duration-200"
                     >
-                      Follow us on Facebook
+                      Volg ons op Facebook
                     </a>
                   </div>
                 </div>
@@ -116,7 +132,7 @@ const ContactPage = () => {
                       rel="noopener noreferrer"
                       className="text-[#a5673f] hover:text-[#8b5633] transition-colors duration-200"
                     >
-                      Follow us on Instagram
+                      Volg ons op Instagram
                     </a>
                   </div>
                 </div>
@@ -127,36 +143,36 @@ const ContactPage = () => {
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl shadow-[#a5673f]/10 border border-[#a5673f]/20">
               <h2 className="text-2xl font-bold text-[#5a3d2b] mb-6 flex items-center gap-3">
                 <Clock className="text-[#a5673f]" size={28} />
-                Opening Hours
+                Onze openingstijden
               </h2>
 
               <div className="space-y-3">
                 <div className="flex justify-between items-center py-2 border-b border-[#a5673f]/10">
-                  <span className="font-medium text-[#5a3d2b]">Monday</span>
+                  <span className="font-medium text-[#5a3d2b]">Maandag</span>
                   <span className="text-[#5a3d2b]/80">09:00 - 18:00</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-[#a5673f]/10">
-                  <span className="font-medium text-[#5a3d2b]">Tuesday</span>
-                  <span className="text-red-500 font-medium">Closed</span>
+                  <span className="font-medium text-[#5a3d2b]">Dinsdag</span>
+                  <span className="text-red-500 font-medium">Gesloten</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-[#a5673f]/10">
-                  <span className="font-medium text-[#5a3d2b]">Wednesday</span>
-                  <span className="text-red-500 font-medium">Closed</span>
+                  <span className="font-medium text-[#5a3d2b]">Woensdag</span>
+                  <span className="text-red-500 font-medium">Gesloten</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-[#a5673f]/10">
-                  <span className="font-medium text-[#5a3d2b]">Thursday</span>
+                  <span className="font-medium text-[#5a3d2b]">Donderdag</span>
                   <span className="text-[#5a3d2b]/80">09:00 - 18:00</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-[#a5673f]/10">
-                  <span className="font-medium text-[#5a3d2b]">Friday</span>
+                  <span className="font-medium text-[#5a3d2b]">Vrijdag</span>
                   <span className="text-[#5a3d2b]/80">09:00 - 18:00</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-[#a5673f]/10">
-                  <span className="font-medium text-[#5a3d2b]">Saturday</span>
+                  <span className="font-medium text-[#5a3d2b]">Zaterdag</span>
                   <span className="text-[#5a3d2b]/80">09:00 - 16:00</span>
                 </div>
                 <div className="flex justify-between items-center py-2">
-                  <span className="font-medium text-[#5a3d2b]">Sunday</span>
+                  <span className="font-medium text-[#5a3d2b]">Zondag</span>
                   <span className="text-[#5a3d2b]/80">09:00 - 13:00</span>
                 </div>
               </div>
