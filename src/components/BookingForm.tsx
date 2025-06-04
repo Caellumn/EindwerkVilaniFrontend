@@ -434,7 +434,7 @@ const BookingForm = () => {
             minDate={new Date()}
             maxDate={new Date(new Date().setMonth(new Date().getMonth() + 3))}
             onKeyDown={(e) => e.preventDefault()}
-            className="w-full border border-[#a5673f]/30 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b]"
+            className="w-full border border-[#a5673f]/30 rounded-lg px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] font-medium"
             calendarClassName="!z-50"
             placeholderText="Selecteer datum en tijd"
             required
