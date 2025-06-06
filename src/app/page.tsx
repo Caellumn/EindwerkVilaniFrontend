@@ -61,7 +61,7 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
               <h1 className="text-4xl md:text-5xl font-bold text-[#5a3d2b] mb-4">
-                Welcome to Kapsalon Vilani
+                Welkom bij Kapsalon Vilani
               </h1>
               <p className="text-xl text-[#5a3d2b]/80 max-w-2xl mx-auto leading-relaxed">
                 Ervaar professionele haarverzorging met onze experts en
