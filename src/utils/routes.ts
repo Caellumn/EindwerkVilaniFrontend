@@ -7,9 +7,10 @@ import {
   BookingResponse,
 } from "./types";
 
+//basis url
 const API_BASE_URL = "https://kapsalon-vilani-ft6cs.ondigitalocean.app/api";
 
-// Centralized fetch function with error handling
+// centralise the fetch function with error handling
 async function apiRequest(url: string, options: RequestInit = {}) {
   const response = await fetch(`${API_BASE_URL}${url}`, {
     credentials: "include",
@@ -52,28 +53,23 @@ export async function fetchProducts(
 }
 
 // Fetch initial data for the booking form
-export async function fetchInitialData(): Promise<InitialData> {
-  try {
-    const [csrfData, bookingsData, servicesData, productsData] =
-      await Promise.all([
-        fetchCsrfToken(),
-        fetchBookings(),
-        fetchServices(),
-        fetchProducts(1),
-      ]);
+export const fetchInitialData = async (): Promise<InitialData> => {
+  const [csrfData, bookingsData, servicesData, productsData] =
+    await Promise.all([
+      fetchCsrfToken(),
+      fetchBookings(),
+      fetchServices(),
+      fetchProducts(1),
+    ]);
 
-    return {
-      csrfToken: csrfData.csrf_token,
-      bookedSlots: bookingsData,
-      services: servicesData,
-      products: productsData.data,
-      productsPageData: productsData,
-    };
-  } catch (error) {
-    console.error("Error fetching initial data:", error);
-    throw new Error("Failed to load booking form data");
-  }
-}
+  return {
+    csrfToken: csrfData.csrf_token,
+    bookedSlots: bookingsData,
+    services: servicesData,
+    products: productsData.data,
+    productsPageData: productsData,
+  };
+};
 
 // Create a new booking
 export async function createBooking(

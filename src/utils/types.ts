@@ -73,7 +73,47 @@ export type BookingPayload = {
   products?: string[];
 };
 
-// Form state types for useActionState
+// Enhanced form state for useActionState reducer pattern
+export type BookingFormState = {
+  // Loading and data state
+  loading: boolean;
+  initialData: InitialData | null;
+
+  // Form fields
+  name: string;
+  email: string;
+  telephone: string;
+  gender: "male" | "female";
+  remarks: string;
+  selectedDate: Date | null;
+  selectedServices: string[];
+  selectedProducts: string[];
+
+  // Submission state
+  submitting: boolean;
+  success?: boolean;
+  message?: string;
+  errors?: Record<string, string>;
+};
+
+// Action types for the reducer
+export type BookingFormAction =
+  | { type: "LOAD_INITIAL_DATA"; payload: InitialData }
+  | { type: "LOAD_INITIAL_DATA_ERROR"; payload: string }
+  | {
+      type: "UPDATE_FIELD";
+      field: "name" | "email" | "telephone" | "gender" | "remarks";
+      value: string;
+    }
+  | { type: "TOGGLE_SERVICE"; serviceId: string }
+  | { type: "TOGGLE_PRODUCT"; productId: string }
+  | { type: "SET_DATE"; date: Date | null }
+  | { type: "SUBMIT_START" }
+  | { type: "SUBMIT_SUCCESS"; message: string }
+  | { type: "SUBMIT_ERROR"; message: string; errors?: Record<string, string> }
+  | { type: "RESET_FORM" };
+
+// Form state types for simple useActionState (keep for backward compatibility)
 export type FormState = {
   success?: boolean;
   message?: string;

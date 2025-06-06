@@ -76,6 +76,7 @@ const ProductsPagination = ({
               <div className="flex items-center gap-3">
                 <input
                   type="checkbox"
+                  id={`product-${product.id}`}
                   checked={selectedProducts.includes(product.id)}
                   onChange={(e) => {
                     e.stopPropagation();
@@ -84,11 +85,20 @@ const ProductsPagination = ({
                   onClick={(e) => e.stopPropagation()}
                   className="text-[#a5673f]"
                   disabled={isLoading}
+                  aria-describedby={`product-${product.id}-description`}
                 />
-                <h4 className="font-semibold text-[#5a3d2b]">{product.name}</h4>
+                <label
+                  htmlFor={`product-${product.id}`}
+                  className="font-semibold text-[#5a3d2b] cursor-pointer"
+                >
+                  {product.name}
+                </label>
               </div>
               <div>
-                <p className="text-sm text-[#5a3d2b]/70 line-clamp-2">
+                <p
+                  id={`product-${product.id}-description`}
+                  className="text-sm text-[#5a3d2b]/70 line-clamp-2"
+                >
                   {product.description}
                 </p>
                 <div className="flex justify-between mt-2">
@@ -124,6 +134,7 @@ const ProductsPagination = ({
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={!pageData.prev_page_url || isLoading}
                 className="flex items-center px-2 py-1 text-[#5a3d2b] hover:bg-[#a5673f]/10 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                aria-label="Vorige pagina"
               >
                 <ChevronLeft size={16} />
                 <span className="hidden sm:inline ml-1 text-sm">Vorige</span>
@@ -146,6 +157,10 @@ const ProductsPagination = ({
                             ? "bg-[#a5673f] text-white"
                             : "text-[#5a3d2b] hover:bg-[#a5673f]/10"
                         }`}
+                        aria-label={`Ga naar pagina ${pageNum}`}
+                        aria-current={
+                          pageNum === currentPage ? "page" : undefined
+                        }
                       >
                         {pageNum}
                       </button>
@@ -160,6 +175,7 @@ const ProductsPagination = ({
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={!pageData.next_page_url || isLoading}
                 className="flex items-center px-2 py-1 text-[#5a3d2b] hover:bg-[#a5673f]/10 rounded-lg transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                aria-label="Volgende pagina"
               >
                 <span className="hidden sm:inline mr-1 text-sm">Volgende</span>
                 <ChevronRight size={16} />

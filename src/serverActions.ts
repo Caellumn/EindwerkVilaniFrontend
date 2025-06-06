@@ -1,12 +1,7 @@
 "use server";
 
-import {
-  FormState,
-  BookingPayload,
-  InitialData,
-  PaginatedProductResponse,
-} from "./utils/types";
-import { fetchInitialData, fetchProducts, createBooking } from "./utils/routes";
+import { BookingPayload, FormState } from "./utils/types";
+import { createBooking } from "./utils/routes";
 
 // Validation functions
 function validateEmail(email: string): string | null {
@@ -78,12 +73,6 @@ function validateDate(dateString: string): string | null {
     return "Selecteer een tijd tussen 09:00 en 17:00";
   }
 
-  // Check if it's a weekend (assuming business is closed on weekends)
-  const dayOfWeek = selectedDate.getDay();
-  if (dayOfWeek === 0 || dayOfWeek === 6) {
-    return "We zijn gesloten in het weekend. Selecteer een werkdag";
-  }
-
   return null;
 }
 
@@ -104,73 +93,8 @@ function validateRemarks(remarks: string): string | null {
   return null;
 }
 
-// Server action to fetch initial data
-export async function fetchInitialDataAction(): Promise<
-  FormState & { data?: InitialData }
-> {
-  try {
-    const data = await fetchInitialData();
-    return {
-      success: true,
-      data,
-    };
-  } catch (error) {
-    console.error("Error in fetchInitialDataAction:", error);
-    return {
-      success: false,
-      message: "Kon geen gegevens laden. Probeer de pagina te vernieuwen.",
-    };
-  }
-}
-
-// Server action to fetch products with pagination
-export async function fetchProductsAction(
-  currentState: FormState,
-  formData: FormData
-): Promise<FormState & { data?: PaginatedProductResponse }> {
-  try {
-    const page = parseInt(formData.get("page") as string) || 1;
-
-    if (page < 1) {
-      return {
-        success: false,
-        message: "Ongeldige paginanummer",
-      };
-    }
-
-    const data = await fetchProducts(page);
-
-    return {
-      success: true,
-      data,
-    };
-  } catch (error) {
-    console.error("Error in fetchProductsAction:", error);
-    return {
-      success: false,
-      message: "Kon producten niet laden. Probeer opnieuw.",
-    };
-  }
-}
-
-// Helper function to format date for Amsterdam timezone
-function formatAmsterdamDateTime(date: Date): string {
-  const amsterdamFormatter = new Intl.DateTimeFormat("sv-SE", {
-    timeZone: "Europe/Amsterdam",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-  });
-
-  return amsterdamFormatter.format(date).replace("T", " ");
-}
-
-// Server action to create a booking
-export async function createBookingAction(
+// Simplified action for form submission only
+export async function bookingFormAction(
   currentState: FormState,
   formData: FormData
 ): Promise<FormState> {
@@ -179,7 +103,7 @@ export async function createBookingAction(
     const name = (formData.get("name") as string)?.trim() || "";
     const email = (formData.get("email") as string)?.trim() || "";
     const telephone = (formData.get("telephone") as string)?.trim() || "";
-    const gender = formData.get("gender") as "male" | "female";
+    const gender = (formData.get("gender") as string) || "male";
     const remarks = (formData.get("remarks") as string)?.trim() || "";
     const dateString = formData.get("date") as string;
     const csrfToken = formData.get("csrfToken") as string;
@@ -254,17 +178,13 @@ export async function createBookingAction(
     const selectedDate = new Date(dateString);
     const formattedDate = formatAmsterdamDateTime(selectedDate);
 
-    console.log("=== BOOKING DEBUG INFO ===");
-    console.log("Selected Date (local):", selectedDate);
-    console.log("Formatted date for API (Amsterdam):", formattedDate);
-
     // Create booking payload
     const payload: BookingPayload = {
       date: formattedDate,
       name,
       email,
       telephone,
-      gender,
+      gender: gender as "male" | "female",
       remarks: remarks || "Geen opmerkingen",
       status: "pending",
     };
@@ -277,13 +197,8 @@ export async function createBookingAction(
       payload.products = selectedProducts;
     }
 
-    console.log("Full payload being sent:", payload);
-
     // Create booking
-    const result = await createBooking(payload, csrfToken);
-
-    console.log("SUCCESS: Booking created successfully!");
-    console.log("Response data:", result);
+    await createBooking(payload, csrfToken);
 
     return {
       success: true,
@@ -291,7 +206,7 @@ export async function createBookingAction(
         "Afspraak succesvol gemaakt! Je ontvangt een bevestiging per email.",
     };
   } catch (error) {
-    console.error("Error in createBookingAction:", error);
+    console.error("Error in booking submission:", error);
 
     // Handle specific API errors
     if (error instanceof Error) {
@@ -323,4 +238,20 @@ export async function createBookingAction(
         "Er is een fout opgetreden bij het maken van de afspraak. Probeer het later opnieuw.",
     };
   }
+}
+
+// Helper function to format date for Amsterdam timezone
+function formatAmsterdamDateTime(date: Date): string {
+  const amsterdamFormatter = new Intl.DateTimeFormat("sv-SE", {
+    timeZone: "Europe/Amsterdam",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+
+  return amsterdamFormatter.format(date).replace("T", " ");
 }

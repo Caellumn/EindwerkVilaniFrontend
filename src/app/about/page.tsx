@@ -4,6 +4,7 @@ import { Heart, Scissors, Moon, PawPrint, Instagram } from "lucide-react";
 import Image from "next/image";
 import { Metadata } from "next";
 import BookingButton from "@/components/BookingButton";
+import FeatureTag from "@/components/FeatureTag";
 
 export const metadata: Metadata = {
   title: "Kapsalon Vilani - Over ons",
@@ -119,26 +120,20 @@ const AboutPage = () => {
                   </p>
                 </div>
                 <div className="mt-6 flex flex-wrap gap-3 justify-center lg:justify-start">
-                  <span className="px-4 py-2 bg-[#a5673f]/10 text-[#a5673f] rounded-full text-sm font-medium flex items-center gap-2">
-                    <PawPrint size={16} />
-                    Vriendelijk
-                  </span>
-                  <span className="px-4 py-2 bg-[#a5673f]/10 text-[#a5673f] rounded-full text-sm font-medium flex items-center gap-2">
-                    <Moon size={16} />
-                    Relax-Coach
-                  </span>
-                  <span className="px-4 py-2 bg-[#a5673f]/10 text-[#a5673f] rounded-full text-sm font-medium flex items-center gap-2">
-                    <Heart size={16} />
-                    Hypoallergeen Gezellig
-                  </span>
+                  <FeatureTag icon={PawPrint} text="Vriendelijk" />
+                  <FeatureTag icon={Moon} text="Relax-Coach" />
+                  <FeatureTag icon={Heart} text="Hypoallergeen Gezellig" />
                   <a
                     href="https://www.instagram.com/sheldon.the.amazing/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-[#a5673f]/10 text-[#a5673f] rounded-full text-sm font-medium flex items-center gap-2 hover:bg-[#a5673f]/20 transition-colors duration-200"
+                    className="hover:scale-105 transition-transform duration-200"
                   >
-                    <Instagram size={16} />
-                    Sheldon&apos;s Instagram
+                    <FeatureTag
+                      icon={Instagram}
+                      text="Sheldon's Instagram"
+                      className="hover:bg-[#a5673f]/20 transition-colors duration-200 cursor-pointer"
+                    />
                   </a>
                 </div>
               </div>
