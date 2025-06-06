@@ -116,7 +116,7 @@ export function SimpleCarousel({
         aria-label="Next slide"
       >
         <svg
-          className="w-5 h-5 text-white"
+          className="w-5 h-5 text-white cursor-pointer"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -137,10 +137,10 @@ export function SimpleCarousel({
             key={index}
             onClick={() => goToSlide(index)}
             className={cn(
-              "w-3 h-3 rounded-full transition-all duration-200 border-2",
+              "w-3 h-3 rounded-full transition-all duration-200 border-2 cursor-pointer",
               index === currentIndex
-                ? "bg-[#a5673f] border-[#a5673f] scale-125"
-                : "bg-transparent border-[#a5673f]/50 hover:border-[#a5673f] hover:bg-[#a5673f]/30"
+                ? "bg-[#a5673f] border-[#a5673f] scale-125 cursor-pointer"
+                : "bg-transparent border-[#a5673f]/50 hover:border-[#a5673f] hover:bg-[#a5673f]/30 cursor-pointer"
             )}
             aria-label={`Go to slide ${index + 1}`}
           />
