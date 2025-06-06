@@ -38,6 +38,7 @@ export type Product = {
   description: string;
   price: string;
   stock: number;
+  image?: string;
 };
 
 export type PaginatedProductResponse = {

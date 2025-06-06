@@ -44,7 +44,7 @@ export const generateMetadata = async ({
     openGraph: {
       title: data.name,
       description: data.description,
-      images: [{ url: data.image }],
+      ...(data.image && { images: [{ url: data.image }] }),
     },
   };
 };
