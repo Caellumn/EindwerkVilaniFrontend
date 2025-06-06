@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { SimpleCarousel } from "@/components/SimpleCarousel";
 import { Footer } from "@/components/Footer";
-import { ArrowRight } from "lucide-react";
+import BookingButton from "@/components/BookingButton";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -78,15 +78,7 @@ export default function Home() {
             />
 
             {/* Call to Action */}
-            <div className="text-center">
-              <a
-                href="/book"
-                className="inline-flex items-center px-8 py-4 text-white bg-[#a5673f] hover:bg-[#8b5633] rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
-              >
-                Maak een afspraak
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
-            </div>
+            <BookingButton />
           </div>
         </section>
       </main>

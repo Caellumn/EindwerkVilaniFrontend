@@ -1,15 +1,8 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import {
-  Phone,
-  Globe,
-  Clock,
-  MapPin,
-  Facebook,
-  ArrowRight,
-  Instagram,
-} from "lucide-react";
+import { Phone, Globe, Clock, MapPin, Facebook, Instagram } from "lucide-react";
 import { Metadata } from "next";
+import BookingButton from "@/components/BookingButton";
 
 export const metadata: Metadata = {
   title: "Kapsalon Vilani - Contact",
@@ -180,15 +173,7 @@ const ContactPage = () => {
           </div>
 
           {/* Call to Action */}
-          <div className="text-center">
-            <a
-              href="/book"
-              className="inline-flex items-center px-8 py-4 text-white bg-[#a5673f] hover:bg-[#8b5633] rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
-            >
-              Book Your Appointment
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </a>
-          </div>
+          <BookingButton />
         </div>
       </main>
       <Footer />

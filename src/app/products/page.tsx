@@ -3,15 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import {
-  ShoppingBag,
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import { ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
 import { slugit } from "@/utils/helpers";
 //types
 import { PaginatedResponse } from "@/utils/types";
+import BookingButton from "@/components/BookingButton";
 
 export const metadata: Metadata = {
   title: "Kapsalon Vilani - Producten",
@@ -219,13 +215,7 @@ const ProductsPage = async ({ searchParams }: ProductsPageProps) => {
                 Kom langs in ons salon voor persoonlijk advies over de beste
                 producten voor uw haar
               </p>
-              <Link
-                href="/book"
-                className="inline-flex items-center px-8 py-4 text-white bg-[#a5673f] hover:bg-[#8b5633] rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
-              >
-                Maak Een Afspraak
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
+              <BookingButton />
             </div>
           </div>
         </div>
