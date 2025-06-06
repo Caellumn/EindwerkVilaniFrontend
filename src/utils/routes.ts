@@ -37,7 +37,9 @@ export async function fetchCsrfToken(): Promise<{ csrf_token: string }> {
 
 // Fetch all bookings
 export async function fetchBookings(): Promise<BookingSlot[]> {
-  return apiRequest("/bookings");
+  return apiRequest("/bookings", {
+    cache: "no-store", // Disable caching for real-time booking data
+  });
 }
 
 // Fetch all services

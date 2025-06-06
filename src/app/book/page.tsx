@@ -5,6 +5,9 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
+// Force dynamic rendering to ensure fresh data on each visit
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Kapsalon Vilani - Afspraak maken",
   description: "Maak een afspraak voor een haarverzorging bij Kapsalon Vilani",
