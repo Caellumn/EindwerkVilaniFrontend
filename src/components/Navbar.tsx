@@ -5,11 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useIsMobileOrTablet } from "@/hooks/useMediaQuery";
 
 import type { ComponentProps } from "react";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const isMobileOrTablet = useIsMobileOrTablet();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -19,52 +21,58 @@ export const Navbar = () => {
       {/* Logo */}
       <NavbarLogo />
 
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center gap-2 flex-1 justify-center">
-        <NavbarLink href="/">Home</NavbarLink>
-        <NavbarLink href="/about">Over ons</NavbarLink>
-        <NavbarLink href="/products">Producten</NavbarLink>
-        <NavbarLink href="/contact">Contact</NavbarLink>
-        <NavbarLink href="/onze-creaties">Onze creaties</NavbarLink>
-      </div>
+      {/* Desktop Navigation - only show on desktop */}
+      {!isMobileOrTablet && (
+        <div className="flex items-center gap-2 flex-1 justify-center">
+          <NavbarLink href="/">Home</NavbarLink>
+          <NavbarLink href="/about">Over ons</NavbarLink>
+          <NavbarLink href="/products">Producten</NavbarLink>
+          <NavbarLink href="/contact">Contact</NavbarLink>
+          <NavbarLink href="/onze-creaties">Onze creaties</NavbarLink>
+        </div>
+      )}
 
-      {/* Desktop Book Button */}
-      <div className="hidden md:flex items-center">
-        <NavbarLink href="/book" isHighlighted>
-          Book
-        </NavbarLink>
-      </div>
+      {/* Desktop Book Button - only show on desktop */}
+      {!isMobileOrTablet && (
+        <div className="flex items-center">
+          <NavbarLink href="/book" isHighlighted>
+            Book
+          </NavbarLink>
+        </div>
+      )}
 
-      {/* Mobile Menu Button */}
-      <button
-        onClick={toggleMenu}
-        className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg text-[#5a3d2b] hover:bg-[#faf3ee] transition-colors duration-200"
-        aria-label="Toggle menu"
-      >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
+      {/* Mobile Menu Button - only render on mobile/tablet */}
+      {isMobileOrTablet && (
+        <button
+          onClick={toggleMenu}
+          className="flex items-center justify-center w-10 h-10 rounded-lg text-[#5a3d2b] hover:bg-[#faf3ee] transition-colors duration-200"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      )}
 
-      {/* Mobile Navigation Menu */}
-      {isOpen && (
-        <div className="fixed top-20 left-4 right-4 md:hidden bg-white/95 backdrop-blur-md border border-[#a5673f]/20 rounded-2xl shadow-xl shadow-black/10 z-[9999]">
+      {/* Mobile Navigation Menu - only show when open and on mobile/tablet */}
+      {isMobileOrTablet && isOpen && (
+        <div className="fixed top-20 left-4 right-4 bg-white/95 backdrop-blur-md border border-[#a5673f]/20 rounded-2xl shadow-xl shadow-black/10 z-[9999]">
           <div className="flex flex-col p-4 space-y-2">
             <MobileNavLink href="/" onClick={closeMenu}>
               Home
             </MobileNavLink>
             <MobileNavLink href="/about" onClick={closeMenu}>
-              About
+              over ons
             </MobileNavLink>
             <MobileNavLink href="/products" onClick={closeMenu}>
-              Products
+              Producten
             </MobileNavLink>
             <MobileNavLink href="/contact" onClick={closeMenu}>
               Contact
             </MobileNavLink>
-            <MobileNavLink href="/voor-na" onClick={closeMenu}>
-              Voor en na
+            <MobileNavLink href="/onze-creaties" onClick={closeMenu}>
+              Onze creaties
             </MobileNavLink>
             <MobileNavLink href="/book" onClick={closeMenu} isHighlighted>
-              Book Appointment
+              Afspraak maken
             </MobileNavLink>
           </div>
         </div>
