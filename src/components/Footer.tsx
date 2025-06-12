@@ -2,6 +2,8 @@ import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 export const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-[#2a1a0f] text-[#faf3ee] py-8 border-t border-[#5a3d2b]/30">
       <div className="container mx-auto px-4">
@@ -70,7 +72,7 @@ export const Footer = () => {
         <div className="mt-8 pt-6 border-t border-[#5a3d2b]/30">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-[#faf3ee]/70">
-              © 2025 Kapsalon Vilani. All rights reserved.
+              © {currentYear} Kapsalon Vilani. All rights reserved.
             </p>
             <div className="flex gap-6">
               <a

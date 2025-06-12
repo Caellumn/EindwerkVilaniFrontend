@@ -5,9 +5,9 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ShoppingBag, ChevronLeft, ChevronRight } from "lucide-react";
 import { slugit } from "@/utils/helpers";
+import BookingButton from "@/components/BookingButton";
 //types
 import { PaginatedResponse } from "@/utils/types";
-import BookingButton from "@/components/BookingButton";
 
 export const metadata: Metadata = {
   title: "Kapsalon Vilani - Producten",

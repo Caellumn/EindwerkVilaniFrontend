@@ -25,30 +25,30 @@ const carouselItems = [
   {
     id: 1,
     image:
-      "https://res.cloudinary.com/dqq0m8xb3/image/upload/v1748189993/fvp0twjhzd9lchbyy06r.jpg",
-    title: "Professionele Haarverzorging & Styling",
-    description: "Jouw haar, onze passie",
-  },
-  {
-    id: 2,
-    image:
       "https://images.unsplash.com/photo-1559599189-fe84dea4eb79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
     title: "Stijlvol Saloninterieur",
     description: "Waar design en rust samenkomen",
   },
   {
-    id: 3,
+    id: 2,
     image:
       "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
     title: "Haarproducten van Topkwaliteit",
     description: "Topproducten voor stralend haar",
   },
   {
-    id: 4,
+    id: 3,
     image:
       "https://images.unsplash.com/photo-1522337660859-02fbefca4702?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80",
     title: "Kleuren met Klasse",
     description: "Haarkleur met karakter, techniek met klasse",
+  },
+  {
+    id: 4,
+    image:
+      "https://res.cloudinary.com/dqq0m8xb3/image/upload/v1748189993/fvp0twjhzd9lchbyy06r.jpg",
+    title: "Professionele Haarverzorging & Styling",
+    description: "Jouw haar, onze passie",
   },
 ];
 

@@ -36,7 +36,7 @@ export const Navbar = () => {
       {!isMobileOrTablet && (
         <div className="flex items-center">
           <NavbarLink href="/book" isHighlighted>
-            Book
+            Afspraak maken
           </NavbarLink>
         </div>
       )}
