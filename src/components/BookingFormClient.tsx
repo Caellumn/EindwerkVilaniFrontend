@@ -180,6 +180,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
             <input
               name="name"
               defaultValue=""
+              autoComplete="off"
               className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
                 formState.errors?.name
                   ? "border-red-500"
@@ -204,6 +205,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
               type="email"
               id="email"
               name="email"
+              autoComplete="off"
               className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
                 formState.errors?.email
                   ? "border-red-500"
@@ -228,6 +230,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
               type="tel"
               id="telephone"
               name="telephone"
+              autoComplete="off"
               className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
                 formState.errors?.telephone
                   ? "border-red-500"
@@ -291,6 +294,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
             minDate={new Date()}
             maxDate={new Date(new Date().setMonth(new Date().getMonth() + 3))}
             onKeyDown={(e) => e.preventDefault()}
+            autoComplete="off"
             className={`w-full border rounded-lg px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] font-medium ${
               formState.errors?.date ? "border-red-500" : "border-[#a5673f]/30"
             }`}
@@ -390,6 +394,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
             id="remarks"
             name="remarks"
             rows={3}
+            autoComplete="off"
             className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
               formState.errors?.remarks
                 ? "border-red-500"
