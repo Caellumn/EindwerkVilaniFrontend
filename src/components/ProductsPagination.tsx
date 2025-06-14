@@ -82,8 +82,7 @@ const ProductsPagination = ({
                     e.stopPropagation();
                     if (!isLoading) onProductToggle(product.id);
                   }}
-                  onClick={(e) => e.stopPropagation()}
-                  className="text-[#a5673f]"
+                  className="sr-only"
                   disabled={isLoading}
                   aria-describedby={`product-${product.id}-description`}
                 />

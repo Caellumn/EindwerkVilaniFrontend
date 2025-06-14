@@ -27,7 +27,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
   };
 
   // useActionState for form submission
-  const [formState, formAction] = useActionState(
+  const [formState, formAction, isPending] = useActionState(
     bookingFormAction,
     initialFormState
   );
@@ -333,8 +333,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
                         e.stopPropagation();
                         handleServiceToggle(service.id);
                       }}
-                      onClick={(e) => e.stopPropagation()}
-                      className="text-[#a5673f]"
+                      className="sr-only"
                       aria-describedby={`service-${service.id}-description`}
                     />
                     <label
@@ -422,9 +421,14 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-[#a5673f] hover:bg-[#8b5633] text-white py-3 px-6 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+          disabled={isPending}
+          className={`w-full py-3 px-6 rounded-lg font-medium shadow-lg transition-all duration-200 ${
+            isPending
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-[#a5673f] hover:bg-[#8b5633] hover:shadow-xl hover:scale-105"
+          } text-white`}
         >
-          Afspraak Maken
+          {isPending ? "Even geduld..." : "Afspraak Maken"}
         </button>
       </form>
     </div>
