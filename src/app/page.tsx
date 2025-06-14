@@ -70,15 +70,19 @@ export default function Home() {
             </div>
 
             {/* Simple Carousel */}
-            <SimpleCarousel
-              items={carouselItems}
-              autoPlay={true}
-              autoPlayInterval={4000}
-              className="mb-12"
-            />
+            <div style={{ touchAction: "pan-y pinch-zoom" }}>
+              <SimpleCarousel
+                items={carouselItems}
+                autoPlay={true}
+                autoPlayInterval={4000}
+                className="mb-12"
+              />
+            </div>
 
             {/* Call to Action */}
-            <BookingButton />
+            <div className="relative z-10">
+              <BookingButton />
+            </div>
           </div>
         </section>
       </main>
