@@ -6,12 +6,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useIsMobileOrTablet } from "@/hooks/useMediaQuery";
+import { usePathname } from "next/navigation";
 
 import type { ComponentProps } from "react";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const isMobileOrTablet = useIsMobileOrTablet();
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -24,18 +26,35 @@ export const Navbar = () => {
       {/* Desktop Navigation - only show on desktop */}
       {!isMobileOrTablet && (
         <div className="flex items-center gap-2 flex-1 justify-center">
-          <NavbarLink href="/">Home</NavbarLink>
-          <NavbarLink href="/about">Over ons</NavbarLink>
-          <NavbarLink href="/products">Producten</NavbarLink>
-          <NavbarLink href="/contact">Contact</NavbarLink>
-          <NavbarLink href="/onze-creaties">Onze creaties</NavbarLink>
+          <NavbarLink href="/" isActive={pathname === "/"}>
+            Home
+          </NavbarLink>
+          <NavbarLink href="/about" isActive={pathname === "/about"}>
+            Over ons
+          </NavbarLink>
+          <NavbarLink href="/products" isActive={pathname === "/products"}>
+            Producten
+          </NavbarLink>
+          <NavbarLink href="/contact" isActive={pathname === "/contact"}>
+            Contact
+          </NavbarLink>
+          <NavbarLink
+            href="/onze-creaties"
+            isActive={pathname === "/onze-creaties"}
+          >
+            Onze creaties
+          </NavbarLink>
         </div>
       )}
 
       {/* Desktop Book Button - only show on desktop */}
       {!isMobileOrTablet && (
         <div className="flex items-center">
-          <NavbarLink href="/book" isHighlighted>
+          <NavbarLink
+            href="/book"
+            isHighlighted
+            isActive={pathname === "/book"}
+          >
             Afspraak maken
           </NavbarLink>
         </div>
@@ -56,22 +75,47 @@ export const Navbar = () => {
       {isMobileOrTablet && isOpen && (
         <div className="fixed top-20 left-4 right-4 bg-white/95 backdrop-blur-md border border-[#a5673f]/20 rounded-2xl shadow-xl shadow-black/10 z-[9999]">
           <div className="flex flex-col p-4 space-y-2">
-            <MobileNavLink href="/" onClick={closeMenu}>
+            <MobileNavLink
+              href="/"
+              onClick={closeMenu}
+              isActive={pathname === "/"}
+            >
               Home
             </MobileNavLink>
-            <MobileNavLink href="/about" onClick={closeMenu}>
+            <MobileNavLink
+              href="/about"
+              onClick={closeMenu}
+              isActive={pathname === "/about"}
+            >
               over ons
             </MobileNavLink>
-            <MobileNavLink href="/products" onClick={closeMenu}>
+            <MobileNavLink
+              href="/products"
+              onClick={closeMenu}
+              isActive={pathname === "/products"}
+            >
               Producten
             </MobileNavLink>
-            <MobileNavLink href="/contact" onClick={closeMenu}>
+            <MobileNavLink
+              href="/contact"
+              onClick={closeMenu}
+              isActive={pathname === "/contact"}
+            >
               Contact
             </MobileNavLink>
-            <MobileNavLink href="/onze-creaties" onClick={closeMenu}>
+            <MobileNavLink
+              href="/onze-creaties"
+              onClick={closeMenu}
+              isActive={pathname === "/onze-creaties"}
+            >
               Onze creaties
             </MobileNavLink>
-            <MobileNavLink href="/book" onClick={closeMenu} isHighlighted>
+            <MobileNavLink
+              href="/book"
+              onClick={closeMenu}
+              isHighlighted
+              isActive={pathname === "/book"}
+            >
               Afspraak maken
             </MobileNavLink>
           </div>
@@ -122,9 +166,11 @@ export const NavbarLink = ({
   children,
   href,
   isHighlighted,
+  isActive,
   ...props
 }: {
   isHighlighted?: boolean;
+  isActive?: boolean;
 } & ComponentProps<"a">) => {
   return (
     <Link
@@ -133,6 +179,8 @@ export const NavbarLink = ({
         "relative inline-flex text-sm lg:text-base h-10 lg:h-12 px-4 lg:px-8 tracking-tight items-center justify-center rounded-xl transition-all duration-200",
         isHighlighted
           ? "text-white bg-[#a5673f] hover:bg-[#8b5633] shadow-md hover:scale-105 font-medium"
+          : isActive
+          ? "text-[#a5673f] bg-[#faf3ee] shadow-md scale-[1.02] font-medium border border-[#a5673f]/30"
           : "text-[#5a3d2b] hover:text-[#a5673f] hover:bg-[#faf3ee] hover:shadow-md hover:scale-[1.02] font-medium border border-transparent hover:border-[#a5673f]/30"
       )}
       {...props}
@@ -147,9 +195,11 @@ export const MobileNavLink = ({
   href,
   onClick,
   isHighlighted,
+  isActive,
   ...props
 }: {
   isHighlighted?: boolean;
+  isActive?: boolean;
   onClick?: () => void;
 } & ComponentProps<"a">) => {
   return (
@@ -160,6 +210,8 @@ export const MobileNavLink = ({
         "flex items-center justify-center h-12 px-4 rounded-xl transition-all duration-200 font-medium",
         isHighlighted
           ? "text-white bg-[#a5673f] hover:bg-[#8b5633] shadow-md"
+          : isActive
+          ? "text-[#a5673f] bg-[#faf3ee] shadow-md border border-[#a5673f]/30"
           : "text-[#5a3d2b] hover:text-[#a5673f] hover:bg-[#faf3ee] border border-transparent hover:border-[#a5673f]/30"
       )}
       {...props}

@@ -33,11 +33,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
   );
 
   // Client-side form state
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [telephone, setTelephone] = useState("");
   const [gender, setGender] = useState<"male" | "female">("male");
-  const [remarks, setRemarks] = useState("");
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
@@ -49,10 +45,6 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
   useEffect(() => {
     if (formState.success === true) {
       // Reset form fields
-      setName("");
-      setEmail("");
-      setTelephone("");
-      setRemarks("");
       setSelectedDate(null);
       setSelectedServices([]);
       setSelectedProducts([]);
@@ -186,11 +178,8 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
               Naam *
             </label>
             <input
-              type="text"
-              id="name"
               name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              defaultValue=""
               className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
                 formState.errors?.name
                   ? "border-red-500"
@@ -215,8 +204,6 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
               type="email"
               id="email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
                 formState.errors?.email
                   ? "border-red-500"
@@ -241,8 +228,6 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
               type="tel"
               id="telephone"
               name="telephone"
-              value={telephone}
-              onChange={(e) => setTelephone(e.target.value)}
               className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
                 formState.errors?.telephone
                   ? "border-red-500"
@@ -299,6 +284,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
             onChange={setSelectedDate}
             showTimeSelect
             timeIntervals={30}
+            timeFormat="HH:mm"
             dateFormat="dd/MM/yyyy HH:mm"
             filterDate={(date: Date) => !isDateDisabled(date)}
             filterTime={(time: Date) => !isTimeUnavailable(time)}
@@ -404,8 +390,6 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
           <textarea
             id="remarks"
             name="remarks"
-            value={remarks}
-            onChange={(e) => setRemarks(e.target.value)}
             rows={3}
             className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
               formState.errors?.remarks

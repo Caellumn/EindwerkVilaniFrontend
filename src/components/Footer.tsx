@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -41,11 +42,11 @@ export const Footer = () => {
                 03 294 48 33
               </a>
               <a
-                href="mailto:info@kapsalonvilani.be"
+                href="mailto:info@kapsalon-vilani.be"
                 className="flex items-center gap-2 text-sm text-[#faf3ee]/90 hover:text-[#a5673f] transition-colors duration-200"
               >
                 <Mail size={16} className="text-[#a5673f]" />
-                info@kapsalonvilani.be
+                info@kapsalon-vilani.be
               </a>
             </div>
 
@@ -75,12 +76,14 @@ export const Footer = () => {
               © {currentYear} Kapsalon Vilani. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <a
+              <Link
                 href="/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-xs text-[#faf3ee]/70 hover:text-[#a5673f] transition-colors duration-200"
               >
                 Privacy Policy
-              </a>
+              </Link>
               <a
                 href="/terms"
                 className="text-xs text-[#faf3ee]/70 hover:text-[#a5673f] transition-colors duration-200"
