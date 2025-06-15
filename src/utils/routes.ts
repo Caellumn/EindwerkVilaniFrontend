@@ -5,6 +5,7 @@ import {
   BookingPayload,
   InitialData,
   BookingResponse,
+  OpeningHours,
 } from "./types";
 
 //basis url
@@ -86,3 +87,7 @@ export async function createBooking(
     body: JSON.stringify(payload),
   });
 }
+
+export const fetchOpeningHours = async (): Promise<OpeningHours[]> => {
+  return apiRequest("/opening-times");
+};

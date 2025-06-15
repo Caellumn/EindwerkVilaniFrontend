@@ -118,6 +118,7 @@ export type FormState = {
   success?: boolean;
   message?: string;
   errors?: Record<string, string>;
+  payload?: FormData;
 };
 
 export type BookingFormData = {
@@ -153,4 +154,19 @@ export type BookingResponse = {
   products?: Product[];
   created_at: string;
   updated_at: string;
+};
+
+export type OpeningHours = {
+  id: number;
+  day:
+    | "monday"
+    | "tuesday"
+    | "wednesday"
+    | "thursday"
+    | "friday"
+    | "saturday"
+    | "sunday";
+  status: "open" | "gesloten";
+  open: string | null;
+  close: string | null;
 };

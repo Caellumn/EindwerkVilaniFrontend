@@ -40,8 +40,9 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
 
   const formRef = useRef<HTMLFormElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const prevPendingRef = useRef<boolean>(false);
 
-  // Handle form reset and scroll on success/error
+  // Handle form reset on success
   useEffect(() => {
     if (formState.success === true) {
       // Reset form fields
@@ -53,15 +54,19 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
         formRef.current.reset();
       }
     }
+  }, [formState.success]);
 
-    // Scroll to top on both success and error
-    if (formState.success !== undefined && containerRef.current) {
-      containerRef.current.scrollIntoView({
+  // Scroll to top after form submission completes (when isPending changes from true to false)
+  useEffect(() => {
+    if (prevPendingRef.current && !isPending) {
+      // Scroll to top of the page
+      window.scrollTo({
+        top: 0,
         behavior: "smooth",
-        block: "start",
       });
     }
-  }, [formState.success]);
+    prevPendingRef.current = isPending;
+  }, [isPending]);
 
   const isDateDisabled = (date: Date) => {
     const now = new Date();
@@ -179,7 +184,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
             </label>
             <input
               name="name"
-              defaultValue=""
+              defaultValue={(formState.payload?.get("name") as string) || ""}
               autoComplete="off"
               className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
                 formState.errors?.name
@@ -205,6 +210,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
               type="email"
               id="email"
               name="email"
+              defaultValue={(formState.payload?.get("email") as string) || ""}
               autoComplete="off"
               className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
                 formState.errors?.email
@@ -230,6 +236,9 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
               type="tel"
               id="telephone"
               name="telephone"
+              defaultValue={
+                (formState.payload?.get("telephone") as string) || ""
+              }
               autoComplete="off"
               className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
                 formState.errors?.telephone
@@ -309,7 +318,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
         {/* Services Selection */}
         <div>
           <label className="block text-sm font-medium text-[#5a3d2b] mb-4">
-            Services (selecteer ten minste één service of product)
+            Behandelingen (selecteer ten minste één behandeling of product)
           </label>
           {formState.errors?.services && (
             <div className="mb-4 p-3 rounded-lg bg-red-100 text-red-700 border border-red-300">
@@ -394,6 +403,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
             id="remarks"
             name="remarks"
             rows={3}
+            defaultValue={(formState.payload?.get("remarks") as string) || ""}
             autoComplete="off"
             className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
               formState.errors?.remarks

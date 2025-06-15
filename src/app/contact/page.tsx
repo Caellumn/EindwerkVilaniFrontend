@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Phone, Globe, Clock, MapPin, Facebook, Instagram } from "lucide-react";
 import { Metadata } from "next";
 import BookingButton from "@/components/BookingButton";
+import OpeningHours from "@/components/OpeningHours";
 
 export const metadata: Metadata = {
   title: "Kapsalon Vilani - Contact",
@@ -139,36 +140,7 @@ const ContactPage = () => {
                 Onze openingstijden
               </h2>
 
-              <div className="space-y-3">
-                <div className="flex justify-between items-center py-2 border-b border-[#a5673f]/10">
-                  <span className="font-medium text-[#5a3d2b]">Maandag</span>
-                  <span className="text-[#5a3d2b]/80">09:00 - 18:00</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-[#a5673f]/10">
-                  <span className="font-medium text-[#5a3d2b]">Dinsdag</span>
-                  <span className="text-red-500 font-medium">Gesloten</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-[#a5673f]/10">
-                  <span className="font-medium text-[#5a3d2b]">Woensdag</span>
-                  <span className="text-red-500 font-medium">Gesloten</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-[#a5673f]/10">
-                  <span className="font-medium text-[#5a3d2b]">Donderdag</span>
-                  <span className="text-[#5a3d2b]/80">09:00 - 18:00</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-[#a5673f]/10">
-                  <span className="font-medium text-[#5a3d2b]">Vrijdag</span>
-                  <span className="text-[#5a3d2b]/80">09:00 - 18:00</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-[#a5673f]/10">
-                  <span className="font-medium text-[#5a3d2b]">Zaterdag</span>
-                  <span className="text-[#5a3d2b]/80">09:00 - 16:00</span>
-                </div>
-                <div className="flex justify-between items-center py-2">
-                  <span className="font-medium text-[#5a3d2b]">Zondag</span>
-                  <span className="text-[#5a3d2b]/80">09:00 - 13:00</span>
-                </div>
-              </div>
+              <OpeningHours />
             </div>
           </div>
 

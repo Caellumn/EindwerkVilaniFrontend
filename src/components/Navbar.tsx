@@ -38,12 +38,12 @@ export const Navbar = () => {
           <NavbarLink href="/contact" isActive={pathname === "/contact"}>
             Contact
           </NavbarLink>
-          <NavbarLink
+          {/* <NavbarLink
             href="/onze-creaties"
             isActive={pathname === "/onze-creaties"}
           >
             Onze creaties
-          </NavbarLink>
+          </NavbarLink> */}
         </div>
       )}
 
@@ -103,13 +103,13 @@ export const Navbar = () => {
             >
               Contact
             </MobileNavLink>
-            <MobileNavLink
+            {/* <MobileNavLink
               href="/onze-creaties"
               onClick={closeMenu}
               isActive={pathname === "/onze-creaties"}
             >
               Onze creaties
-            </MobileNavLink>
+            </MobileNavLink> */}
             <MobileNavLink
               href="/book"
               onClick={closeMenu}

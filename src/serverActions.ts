@@ -135,6 +135,7 @@ export async function bookingFormAction(
         success: false,
         message:
           "Beveiligingstoken ontbreekt. Vernieuw de pagina en probeer opnieuw.",
+        payload: formData,
       };
     }
 
@@ -154,6 +155,7 @@ export async function bookingFormAction(
       return {
         success: false,
         message: "Ongeldige gegevens verzonden. Probeer opnieuw.",
+        payload: formData,
       };
     }
 
@@ -171,6 +173,7 @@ export async function bookingFormAction(
         success: false,
         message: "Controleer de invoer en probeer opnieuw.",
         errors,
+        payload: formData,
       };
     }
 
@@ -214,13 +217,15 @@ export async function bookingFormAction(
         return {
           success: false,
           message: "Ongeldige gegevens verzonden. Controleer je invoer.",
+          payload: formData,
         };
       }
       if (error.message.includes("409")) {
         return {
           success: false,
           message:
-            "Deze tijd is niet meer beschikbaar. Kies een ander tijdstip.",
+            "De totale duur van je geselecteerde behandelingen overlapt met een bestaande afspraak. Kies een ander tijdstip.",
+          payload: formData,
         };
       }
       if (error.message.includes("422")) {
@@ -228,6 +233,7 @@ export async function bookingFormAction(
           success: false,
           message:
             "De ingevoerde gegevens zijn ongeldig. Controleer alle velden.",
+          payload: formData,
         };
       }
     }
@@ -236,6 +242,7 @@ export async function bookingFormAction(
       success: false,
       message:
         "Er is een fout opgetreden bij het maken van de afspraak. Probeer het later opnieuw.",
+      payload: formData,
     };
   }
 }
