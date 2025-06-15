@@ -36,17 +36,23 @@ export const Footer = () => {
               </h3>
               <a
                 href="tel:+3232944833"
-                className="flex items-center gap-2 text-sm text-[#faf3ee]/90 hover:text-[#a5673f] transition-colors duration-200 mb-1"
+                className="flex items-center gap-2 text-sm text-[#faf3ee]/90 hover:text-[#a5673f] transition-colors duration-200 mb-1 cursor-pointer"
               >
-                <Phone size={16} className="text-green-500" />
-                03 294 48 33
+                <Phone
+                  size={16}
+                  className="text-green-500 pointer-events-none"
+                />
+                <span className="cursor-pointer">03 294 48 33</span>
               </a>
               <a
                 href="mailto:info@kapsalon-vilani.be"
-                className="flex items-center gap-2 text-sm text-[#faf3ee]/90 hover:text-[#a5673f] transition-colors duration-200"
+                className="flex items-center gap-2 text-sm text-[#faf3ee]/90 hover:text-[#a5673f] transition-colors duration-200 cursor-pointer"
               >
-                <Mail size={16} className="text-[#a5673f]" />
-                info@kapsalon-vilani.be
+                <Mail
+                  size={16}
+                  className="text-[#a5673f] pointer-events-none"
+                />
+                <span className="cursor-pointer">info@kapsalon-vilani.be</span>
               </a>
             </div>
 
