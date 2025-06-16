@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   description:
     "Kapsalon Vilani biedt professionele haarverzorging en styling in Stabroek. Maak online een afspraak voor knip-, kleur- en stylingdiensten.",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
   },
 };
 
