@@ -13,6 +13,7 @@ import {
 import { bookingFormAction } from "@/serverActions";
 import ProductsPagination from "./ProductsPagination";
 import LoadingSpinner from "./LoadingSpinner";
+import { CustomSelect } from "./CustomSelect";
 
 interface BookingFormClientProps {
   initialData: InitialData;
@@ -135,7 +136,20 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
   return (
     <div
       ref={containerRef}
-      className="max-w-4xl mx-auto p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl"
+      className="max-w-4xl mx-auto p-6 bg-white/90 md:bg-white/80 md:backdrop-blur-sm rounded-2xl shadow-xl"
+      style={{
+        // Ensure proper touch event handling on mobile
+        touchAction: "manipulation",
+        // Remove backdrop blur on mobile to prevent rendering issues
+        backdropFilter:
+          typeof window !== "undefined" && window.innerWidth > 768
+            ? "blur(4px)"
+            : "none",
+        WebkitBackdropFilter:
+          typeof window !== "undefined" && window.innerWidth > 768
+            ? "blur(4px)"
+            : "none",
+      }}
     >
       <h2 className="text-3xl font-bold text-[#5a3d2b] mb-6 text-center">
         Maak een Afspraak
@@ -183,10 +197,13 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
               Naam *
             </label>
             <input
+              id="name"
               name="name"
+              type="text"
               defaultValue={(formState.payload?.get("name") as string) || ""}
               autoComplete="off"
-              className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
+              style={{ touchAction: "manipulation" }}
+              className={`w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] relative z-10 ${
                 formState.errors?.name
                   ? "border-red-500"
                   : "border-[#a5673f]/30"
@@ -212,7 +229,8 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
               name="email"
               defaultValue={(formState.payload?.get("email") as string) || ""}
               autoComplete="off"
-              className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
+              style={{ touchAction: "manipulation" }}
+              className={`w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] relative z-10 ${
                 formState.errors?.email
                   ? "border-red-500"
                   : "border-[#a5673f]/30"
@@ -240,7 +258,8 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
                 (formState.payload?.get("telephone") as string) || ""
               }
               autoComplete="off"
-              className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
+              style={{ touchAction: "manipulation" }}
+              className={`w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] relative z-10 ${
                 formState.errors?.telephone
                   ? "border-red-500"
                   : "border-[#a5673f]/30"
@@ -260,20 +279,18 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
             >
               Geslacht
             </label>
-            <select
+            <CustomSelect
               id="gender"
               name="gender"
               value={gender}
-              onChange={(e) => setGender(e.target.value as "male" | "female")}
-              className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
-                formState.errors?.gender
-                  ? "border-red-500"
-                  : "border-[#a5673f]/30"
-              }`}
-            >
-              <option value="male">Man</option>
-              <option value="female">Vrouw</option>
-            </select>
+              onChange={(value) => setGender(value as "male" | "female")}
+              options={[
+                { value: "male", label: "Man" },
+                { value: "female", label: "Vrouw" },
+              ]}
+              error={!!formState.errors?.gender}
+              className="relative z-10"
+            />
             {formState.errors?.gender && (
               <p className="text-red-500 text-sm mt-1">
                 {formState.errors.gender}
@@ -283,7 +300,7 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
         </div>
 
         {/* Date and Time Selection */}
-        <div>
+        <div style={{ position: "relative", zIndex: 1000 }}>
           <label
             htmlFor="date-picker"
             className="block text-sm font-medium text-[#5a3d2b] mb-2"
@@ -304,11 +321,30 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
             maxDate={new Date(new Date().setMonth(new Date().getMonth() + 3))}
             onKeyDown={(e) => e.preventDefault()}
             autoComplete="off"
-            className={`w-full border rounded-lg px-6 py-4 text-lg focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] font-medium ${
+            className={`w-full border rounded-lg px-4 py-3 text-base md:px-6 md:py-4 md:text-lg focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] font-medium ${
               formState.errors?.date ? "border-red-500" : "border-[#a5673f]/30"
             }`}
-            calendarClassName="!z-50"
+            calendarClassName="!z-[9999]"
+            popperClassName="!z-[9999]"
             placeholderText="Selecteer datum en tijd"
+            // Mobile optimization props
+            withPortal={
+              typeof window !== "undefined" && window.innerWidth <= 768
+            }
+            preventOpenOnFocus={false}
+            popperPlacement="bottom-start"
+            // Prevent mobile keyboard from showing
+            onFocus={(e) => {
+              // Temporarily make readonly on mobile to prevent keyboard
+              if (typeof window !== "undefined" && window.innerWidth <= 768) {
+                const target = e.target as HTMLInputElement;
+                target.setAttribute("readonly", "readonly");
+                // Allow DatePicker to handle the focus event, then remove readonly
+                setTimeout(() => {
+                  target.removeAttribute("readonly");
+                }, 10);
+              }
+            }}
           />
           {formState.errors?.date && (
             <p className="text-red-500 text-sm mt-1">{formState.errors.date}</p>
@@ -405,7 +441,8 @@ const BookingFormClient = ({ initialData }: BookingFormClientProps) => {
             rows={3}
             defaultValue={(formState.payload?.get("remarks") as string) || ""}
             autoComplete="off"
-            className={`w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] ${
+            style={{ touchAction: "manipulation" }}
+            className={`w-full border rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#a5673f] text-[#5a3d2b] relative z-10 ${
               formState.errors?.remarks
                 ? "border-red-500"
                 : "border-[#a5673f]/30"
