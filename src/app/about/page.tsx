@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description: "Ontdek de passievolle professionals achter Kapsalon Vilani",
     images: [
       {
-        url: "/images/logo.jpg",
+        url: "https://res.cloudinary.com/dqq0m8xb3/image/upload/v1748090686/products/tokg8mxxfp6fs1waav4b.jpg",
       },
     ],
   },

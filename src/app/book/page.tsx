@@ -17,7 +17,7 @@ export const metadata: Metadata = {
       "Welkom bij Kapsalon Vilani, een professioneel haarzorgsalon in Putte Stabroek. Onze stijlvolle salon biedt een ruim assortiment aan haarproducten en haarzorgservices.",
     images: [
       {
-        url: "/images/logo.jpg",
+        url: "https://res.cloudinary.com/dqq0m8xb3/image/upload/v1748090686/products/tokg8mxxfp6fs1waav4b.jpg",
       },
     ],
   },
