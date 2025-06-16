@@ -1,4 +1,10 @@
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Kapsalon Vilani - Algemene Voorwaarden",
+  description: "Algemene Voorwaarden voor Kapsalon Vilani",
+};
 
 const TermsAndConditionsPage = () => {
   return (

@@ -9,6 +9,12 @@ import {
   UserCheck,
   FileText,
 } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Kapsalon Vilani - Privacybeleid",
+  description: "Privacybeleid voor Kapsalon Vilani",
+};
 
 const PrivacyPage = () => {
   return (
