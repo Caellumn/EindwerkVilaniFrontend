@@ -224,6 +224,7 @@ body {
 }
 
 /* Mobile input field fixes - CRITICAL for touch interactions */
+/*comment for pushing*/
 @media (max-width: 768px) {
   /* Fix input field touch areas */
   input[type="text"],
