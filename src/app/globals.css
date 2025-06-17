@@ -107,6 +107,34 @@ body {
   color: #5a3d2b !important;
 }
 
+/* Disabled/Past dates styling */
+.react-datepicker__day[aria-disabled="true"] {
+  color: #5a3d2b !important;
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+  background-color: transparent !important;
+}
+
+.react-datepicker__day[aria-disabled="true"]:hover {
+  background-color: transparent !important;
+  color: #5a3d2b !important;
+  opacity: 0.3 !important;
+}
+
+/* Disabled/Unavailable time slots styling */
+.react-datepicker__time-list-item[aria-disabled="true"] {
+  color: #5a3d2b !important;
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+  background-color: transparent !important;
+}
+
+.react-datepicker__time-list-item[aria-disabled="true"]:hover {
+  background-color: transparent !important;
+  color: #5a3d2b !important;
+  opacity: 0.3 !important;
+}
+
 /* Mobile responsive fixes for 327px and smaller screens */
 @media (max-width: 452px) {
   .react-datepicker {
@@ -155,10 +183,43 @@ body {
     color: #5a3d2b !important;
   }
 
+  .react-datepicker__time__header {
+    font-size: 0.7rem !important;
+    padding: 2px 4px !important;
+    line-height: 1.2 !important;
+  }
+
   .react-datepicker__input-container input {
     height: 44px !important;
     font-size: 14px !important;
     padding: 10px 12px !important;
+  }
+
+  /* Ensure disabled states work on mobile */
+  .react-datepicker__day[aria-disabled="true"] {
+    color: #5a3d2b !important;
+    opacity: 0.3 !important;
+    cursor: not-allowed !important;
+    background-color: transparent !important;
+  }
+
+  .react-datepicker__day[aria-disabled="true"]:hover {
+    background-color: transparent !important;
+    color: #5a3d2b !important;
+    opacity: 0.3 !important;
+  }
+
+  .react-datepicker__time-list-item[aria-disabled="true"] {
+    color: #5a3d2b !important;
+    opacity: 0.3 !important;
+    cursor: not-allowed !important;
+    background-color: transparent !important;
+  }
+
+  .react-datepicker__time-list-item[aria-disabled="true"]:hover {
+    background-color: transparent !important;
+    color: #5a3d2b !important;
+    opacity: 0.3 !important;
   }
 }
 
