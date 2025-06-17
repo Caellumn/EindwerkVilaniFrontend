@@ -108,7 +108,7 @@ body {
 }
 
 /* Mobile responsive fixes for 327px and smaller screens */
-@media (max-width: 327px) {
+@media (max-width: 452px) {
   .react-datepicker {
     font-size: 0.7rem !important;
     width: 300px !important;
