@@ -92,7 +92,7 @@ export function SimpleCarousel({
       {/* Navigation buttons */}
       <button
         onClick={goToPrevious}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#a5673f]/80 hover:bg-[#a5673f] backdrop-blur-sm rounded-full p-3 transition-all duration-200 hover:scale-110 shadow-lg cursor-pointer"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#a5673f]/80 hover:bg-[#a5673f] backdrop-blur-sm carousel-button rounded-full p-3 transition-all duration-200 hover:scale-110 shadow-lg cursor-pointer"
         aria-label="Previous slide"
       >
         <svg
@@ -112,7 +112,7 @@ export function SimpleCarousel({
 
       <button
         onClick={goToNext}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#a5673f]/80 hover:bg-[#a5673f] backdrop-blur-sm rounded-full p-3 transition-all duration-200 hover:scale-110 shadow-lg cursor-pointer"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#a5673f]/80 hover:bg-[#a5673f] backdrop-blur-sm carousel-button rounded-full p-3 transition-all duration-200 hover:scale-110 shadow-lg cursor-pointer"
         aria-label="Next slide"
       >
         <svg
