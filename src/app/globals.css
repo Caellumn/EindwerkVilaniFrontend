@@ -317,3 +317,8 @@ body {
 
   /* Note: Custom select dropdown styling moved to CustomSelect component */
 }
+
+/* Restore pointer events for footer links */
+footer a {
+  pointer-events: auto !important;
+}
