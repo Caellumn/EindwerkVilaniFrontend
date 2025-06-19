@@ -17,8 +17,8 @@ function validatePhoneNumber(phone: string): string | null {
   const phoneRegex = /^(\+31|0031|0)[1-9][0-9]{8}$|^(\+31|0031|0)[6][0-9]{8}$/;
   const cleanPhone = phone.replace(/[\s\-\(\)]/g, "");
 
-  if (cleanPhone.length < 10) {
-    return "Telefoonnummer moet minimaal 10 cijfers bevatten";
+  if (cleanPhone.length < 9) {
+    return "Telefoonnummer moet minimaal 9 cijfers bevatten";
   }
 
   if (!phoneRegex.test(cleanPhone)) {
